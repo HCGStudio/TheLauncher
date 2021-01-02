@@ -10,6 +10,7 @@
 ## 运行需求
 
 - 高于1.8版本的Java安装。如果你用Forge，请一定要使用1.8版本的Java。如果你用Fabric，没有最高版本限制，但是注意KubeJS最高支持Java14。推荐使用[AdoptOpenJDK](https://adoptopenjdk.net/)（若下载速度慢，请使用[清华源](https://mirrors.tuna.tsinghua.edu.cn/help/adoptopenjdk/)。
+
 额外需求：仅在微软账户登陆时需要：
 - Windows用户：请安装[Webview Runtime](https://go.microsoft.com/fwlink/p/?LinkId=2124703)。
 - Linux用户：请安装gtk3, gtkmm and webkit2gtk。一般来说系统会自带这些库，如果没有，请使用包管理器安装。
