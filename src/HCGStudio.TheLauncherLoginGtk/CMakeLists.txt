@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(HCGStudio.TheLauncherLogin VERSION 0.1.0)
 
 set (CMAKE_CXX_STANDARD 20)
+set (CMAKE_CXX_FLAGS "-O3 -Wall -Wextra")
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtkmm-3.0)
