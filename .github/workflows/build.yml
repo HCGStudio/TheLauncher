@@ -1,4 +1,4 @@
-name: buid on windows
+name: buid
 
 on:
   push:
