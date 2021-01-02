@@ -1,0 +1,39 @@
+name: buid on windows
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1
+    - name: Build
+      run: .\build.ps1
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows build
+        path: build
+
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get requirements
+      run: sudo apt-get install cmake clang libicu-dev uuid-dev libcurl4-openssl-dev zlib1g-dev libkrb5-dev libtinfo5 libgtk-3-dev libgtkmm-3.0-dev libwebkit2gtk-4.0-dev
+    - name: make build script exectuable 
+      run: chmod +x build.sh
+    - name: Build
+      run: ./build.sh
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: linux build
+        path: build
