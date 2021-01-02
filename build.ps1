@@ -26,6 +26,6 @@ Copy-Item (Join-Path $loginAppBuildResult "*") $outputDir -Recurse
 #Build Native
 Set-Location $appDir
 dotnet publish -r win-x64 -c release
-Copy-Item (Join-Path $appDir "bin\x64\release\net5.0\win-x64\publish\*.exe") $outputDir -Recurse
+Copy-Item (Join-Path $appDir "bin\release\net5.0\win-x64\publish\*.exe") $outputDir -Recurse
 
 Set-Location $baseLocation
