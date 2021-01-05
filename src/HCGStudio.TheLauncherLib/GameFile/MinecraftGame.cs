@@ -43,14 +43,15 @@ namespace HCGStudio.TheLauncherLib.GameFile
             if (!Directory.Exists(baseDir))
                 throw new DirectoryNotFoundException();
             var classPathBuilder = new StringBuilder();
+            var split = OperatingSystem.IsWindows() ? ';' : ':';  
             foreach (var minecraftLib in Libraries)
                 classPathBuilder
                     .Append(Path.Combine(baseDir, minecraftLib.Path))
-                    .Append(';');
+                    .Append(split);
             foreach (var minecraftLib in NativeLibraries)
                 classPathBuilder
                     .Append(Path.Combine(baseDir, minecraftLib.Path))
-                    .Append(';');
+                    .Append(split);
 
             classPathBuilder.Append(Path.Combine(baseDir, ClientPath));
 

@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*" />
     <PackageReference Include="PlasticMetal.MobileSuit" Version="2.2.2" />
     <PackageReference Include="ReadLine" Version="2.0.1" />
     <PackageReference Include="System.Linq.Async" Version="5.0.0" />

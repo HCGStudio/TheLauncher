@@ -15,8 +15,10 @@ Set-Location $loginAppDir
 msbuild -t:restore
 msbuild -p:Configuration=Release
 $loginAppBuildResult = Join-Path $loginAppDir "bin\Release"
-#Remove unsupported x86
 Remove-Item (Join-Path $loginAppBuildResult "x86") -Recurse
+Remove-Item (Join-Path $loginAppBuildResult "arm64") -Recurse
+Move-Item (Join-Path $loginAppBuildResult "x64" "WebView2Loader.dll") $loginAppBuildResult
+Remove-Item (Join-Path $loginAppBuildResult "x64") -Recurse
 #Clenup build result
 Remove-Item (Join-Path $loginAppBuildResult "*.xml")
 Remove-Item (Join-Path $loginAppBuildResult "*.pdb")
@@ -25,7 +27,11 @@ Copy-Item (Join-Path $loginAppBuildResult "*") $outputDir -Recurse
 
 #Build Native
 Set-Location $appDir
-dotnet publish -r win-x64 -c release
-Copy-Item (Join-Path $appDir "bin\release\net5.0\win-x64\publish\*.exe") $outputDir -Recurse
+dotnet publish -c release
+$mainAppBuildResult = "bin\release\net5.0\publish\*"
+Remove-Item (Join-Path $mainAppBuildResult "*.xml")
+Remove-Item (Join-Path $mainAppBuildResult "*.pdb")
+Remove-Item (Join-Path $mainAppBuildResult "*.config")
+Copy-Item (Join-Path $mainAppBuildResult ) $outputDir -Recurse
 
 Set-Location $baseLocation

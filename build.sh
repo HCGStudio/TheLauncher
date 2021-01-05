@@ -16,7 +16,8 @@ cp HCGStudio.TheLauncherLogin $outputDir
 
 #build app
 cd $appDir
-dotnet publish -r linux-x64 -c release
-cp "$appDir/bin/release/net5.0/linux-x64/publish/HCGStudio.TheLauncher" $outputDir
+dotnet publish -c release
+rm "$appDir/bin/release/net5.0/publish/*.pdb"
+cp -a "$appDir/bin/release/net5.0/publish/*" $outputDir
 
 cd $baseLocation
