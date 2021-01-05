@@ -25,13 +25,13 @@ Remove-Item (Join-Path $loginAppBuildResult "*.pdb")
 Remove-Item (Join-Path $loginAppBuildResult "*.config")
 Copy-Item (Join-Path $loginAppBuildResult "*") $outputDir -Recurse
 
-#Build Native
+#Build main app
 Set-Location $appDir
 dotnet publish -c release
 $mainAppBuildResult = "bin\release\net5.0\publish\*"
 Remove-Item (Join-Path $mainAppBuildResult "*.xml")
 Remove-Item (Join-Path $mainAppBuildResult "*.pdb")
 Remove-Item (Join-Path $mainAppBuildResult "*.config")
-Copy-Item (Join-Path $mainAppBuildResult ) $outputDir -Recurse
+Copy-Item (Join-Path $mainAppBuildResult "*") $outputDir -Recurse
 
 Set-Location $baseLocation
