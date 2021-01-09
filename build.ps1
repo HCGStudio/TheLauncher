@@ -29,6 +29,6 @@ $mainAppBuildResult = "bin\release\net5.0\publish\*"
 Remove-Item (Join-Path $mainAppBuildResult "*.xml")
 Remove-Item (Join-Path $mainAppBuildResult "*.pdb")
 Remove-Item (Join-Path $mainAppBuildResult "*.config")
-Copy-Item (Join-Path $mainAppBuildResult ) $outputDir -Recurse
+Copy-Item (Join-Path $mainAppBuildResult "*") $outputDir -Recurse
 
 Set-Location $baseLocation
