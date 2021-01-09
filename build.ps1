@@ -24,7 +24,7 @@ Copy-Item (Join-Path $loginAppBuildResult "*") $outputDir -Recurse
 #Build Main App
 Set-Location $appDir
 dotnet publish -c release  -r win-x64 -p:PublishSingleFile=true
-$mainAppBuildResult = "bin\release\net5.0\publish\*"
+$mainAppBuildResult = "bin\release\net5.0\publish"
 #Clenup build result
 Remove-Item (Join-Path $mainAppBuildResult "*.xml")
 Remove-Item (Join-Path $mainAppBuildResult "*.pdb")
