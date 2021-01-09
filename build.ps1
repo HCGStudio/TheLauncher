@@ -11,7 +11,7 @@ mkdir $outputDir
 
 Set-Location $loginAppDir
 dotnet publish -c release -r win-x64 -p:PublishSingleFile=true
-$loginAppBuildResult = Join-Path $loginAppDir "bin\release\net5.0-windows\win-x64"
+$loginAppBuildResult = Join-Path $loginAppDir "bin\release\net5.0-windows\win-x64\publish"
 Remove-Item (Join-Path $loginAppBuildResult "x86") -Recurse
 Remove-Item (Join-Path $loginAppBuildResult "arm64") -Recurse
 Remove-Item (Join-Path $loginAppBuildResult "x64") -Recurse
@@ -24,7 +24,7 @@ Copy-Item (Join-Path $loginAppBuildResult "*") $outputDir -Recurse
 #Build Main App
 Set-Location $appDir
 dotnet publish -c release  -r win-x64 -p:PublishSingleFile=true
-$mainAppBuildResult = "bin\release\net5.0\publish"
+$mainAppBuildResult = "bin\release\net5.0\win-64\publish"
 #Clenup build result
 Remove-Item (Join-Path $mainAppBuildResult "*.xml")
 Remove-Item (Join-Path $mainAppBuildResult "*.pdb")
