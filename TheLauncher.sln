@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCGStudio.TheLauncher", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCGStudio.TheLauncherLib", "src\HCGStudio.TheLauncherLib\HCGStudio.TheLauncherLib.csproj", "{EEA20297-A0A8-4486-9BCE-466FC2C47CD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCGStudio.TheLauncherLogin", "src\HCGStudio.TheLauncherLogin\HCGStudio.TheLauncherLogin.csproj", "{91823EDD-40BF-449B-A60A-8871CE7CC011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCGStudio.TheLauncherLogin", "src\HCGStudio.TheLauncherLogin\HCGStudio.TheLauncherLogin.csproj", "{91823EDD-40BF-449B-A60A-8871CE7CC011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCGStudio.QuickLauncher", "src\HCGStudio.QuickLauncher\HCGStudio.QuickLauncher.csproj", "{760BD10D-F60D-4BFC-980D-61200C10261F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,18 @@ Global
 		{91823EDD-40BF-449B-A60A-8871CE7CC011}.Release|x64.Build.0 = Debug|Win32
 		{91823EDD-40BF-449B-A60A-8871CE7CC011}.Release|x86.ActiveCfg = Debug|Any CPU
 		{91823EDD-40BF-449B-A60A-8871CE7CC011}.Release|x86.Build.0 = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Debug|x64.Build.0 = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Debug|x86.Build.0 = Debug|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Release|x64.ActiveCfg = Release|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Release|x64.Build.0 = Release|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Release|x86.ActiveCfg = Release|Any CPU
+		{760BD10D-F60D-4BFC-980D-61200C10261F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +79,7 @@ Global
 		{77BFEEC0-B20E-48FF-A3C8-2E32426D4F37} = {C52969D3-849A-43BC-BB5A-8D3911F15558}
 		{EEA20297-A0A8-4486-9BCE-466FC2C47CD2} = {C52969D3-849A-43BC-BB5A-8D3911F15558}
 		{91823EDD-40BF-449B-A60A-8871CE7CC011} = {C52969D3-849A-43BC-BB5A-8D3911F15558}
+		{760BD10D-F60D-4BFC-980D-61200C10261F} = {C52969D3-849A-43BC-BB5A-8D3911F15558}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {714C83FA-B7B7-4AF1-8933-423969177DD2}
