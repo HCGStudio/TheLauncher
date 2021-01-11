@@ -1,36 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Disposables;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ReactiveUI;
 
 namespace HCGStudio.QuickLauncher
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class LoginWindow
     {
         public LoginWindow()
         {
             InitializeComponent();
-            ViewModel = new LoginViewModel();
+            ViewModel = new();
             this.WhenActivated(d =>
             {
-                this.Bind(ViewModel, vm => vm.UserName, v => v.UserNameBox.Text).DisposeWith(d);
-
+                this.Bind(ViewModel,
+                        vm => vm.UserName,
+                        v => v.UserNameBox.Text)
+                    .DisposeWith(d);
+                this.Bind(ViewModel,
+                        vm => vm.Visibility,
+                        v => v.Visibility)
+                    .DisposeWith(d);
+                this.BindCommand(ViewModel,
+                        vm => vm.WhenLogin,
+                        v => v.LoginButton,
+                        nameof(LoginButton.Click))
+                    .DisposeWith(d);
             });
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel != null)
+                ViewModel.Password = PasswordBox.Password;
+        }
+
+        private void LoginWindow_OnClosed(object? sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

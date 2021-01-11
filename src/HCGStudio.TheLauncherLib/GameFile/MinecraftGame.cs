@@ -28,7 +28,10 @@ namespace HCGStudio.TheLauncherLib.GameFile
         public string ClientSha { get; set; } = string.Empty;
         public string PossibleMinecraftVersion { get; set; } = string.Empty;
         public string Id { get; set; } = string.Empty;
-        public string ClientPath => Path.Combine("net", "minecraft", "client", Id, $"{Id}.jar");
+
+        public string ClientPath => Path.Combine("net", "minecraft", "client", PossibleMinecraftVersion,
+            $"{PossibleMinecraftVersion}.jar");
+
         public string MainClass { get; set; } = string.Empty;
 
         public IEnumerable<string> EnumerateArg()
@@ -43,12 +46,8 @@ namespace HCGStudio.TheLauncherLib.GameFile
             if (!Directory.Exists(baseDir))
                 throw new DirectoryNotFoundException();
             var classPathBuilder = new StringBuilder();
-            var split = OperatingSystem.IsWindows() ? ';' : ':';  
+            var split = OperatingSystem.IsWindows() ? ';' : ':';
             foreach (var minecraftLib in Libraries)
-                classPathBuilder
-                    .Append(Path.Combine(baseDir, minecraftLib.Path))
-                    .Append(split);
-            foreach (var minecraftLib in NativeLibraries)
                 classPathBuilder
                     .Append(Path.Combine(baseDir, minecraftLib.Path))
                     .Append(split);
@@ -78,7 +77,10 @@ namespace HCGStudio.TheLauncherLib.GameFile
                         continue;
                     var dest = Path.Combine(nativeDir, entry.Name);
                     await using var stream = zip.GetInputStream(entry);
-                    await stream.CopyToAsync(File.OpenWrite(dest));
+                    var fs = File.OpenWrite(dest);
+                    await stream.CopyToAsync(fs);
+                    await fs.FlushAsync();
+                    await fs.DisposeAsync();
                 }
             }
         }
@@ -224,19 +226,11 @@ namespace HCGStudio.TheLauncherLib.GameFile
                         var value = await Http.GetStringAsync(requireVersion.Url);
                         minecraft = await ParseAsync(JObject.Parse(value), features, baseDir);
                         await File.WriteAllTextAsync(versionFile, value);
-                        gameArgs.AddRange(minecraft.GameArguments);
-                        jvmArgs.AddRange(minecraft.JvmArguments);
-                        libraries.AddRange(minecraft.Libraries);
-                        natives.AddRange(minecraft.NativeLibraries);
                     }
                 }
                 else
                 {
                     minecraft = await ParseProfileFile((string) inheritsFromToken, baseDir, features);
-                    gameArgs.AddRange(minecraft.GameArguments);
-                    jvmArgs.AddRange(minecraft.JvmArguments);
-                    libraries.AddRange(minecraft.Libraries);
-                    natives.AddRange(minecraft.NativeLibraries);
                 }
             }
 
@@ -359,6 +353,12 @@ namespace HCGStudio.TheLauncherLib.GameFile
                         Url = url
                     });
                 }
+
+            //Possible have parent
+            libraries.AddRange(minecraft.Libraries);
+            gameArgs.AddRange(minecraft.GameArguments);
+            jvmArgs.AddRange(minecraft.JvmArguments);
+            natives.AddRange(minecraft.NativeLibraries);
 
             minecraft.GameArguments = gameArgs.ToArray();
             minecraft.JvmArguments = jvmArgs.ToArray();

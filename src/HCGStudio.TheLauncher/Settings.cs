@@ -21,9 +21,9 @@ namespace HCGStudio.TheLauncher
         {
             return Type switch
             {
-                "Mojang" => new OldAuthenticator(AccessToken ?? string.Empty, clientToken, AccountGuid, Name),
-                "Microsoft" => new MicrosoftAuthenticator(RefreshToken ?? string.Empty),
-                "Offline" => new OfflineAuthenticator() {Token = AccountGuid, UserName = Name},
+                "Mojang" => new(AccessToken ?? string.Empty, clientToken, AccountGuid, Name),
+                "Microsoft" => new(RefreshToken ?? string.Empty),
+                "Offline" => new() {Token = AccountGuid, UserName = Name},
                 _ => throw new NotSupportedException()
             };
         }
@@ -48,6 +48,7 @@ namespace HCGStudio.TheLauncher
         public string DefaultJava { get; set; } = string.Empty;
         public string DefaultAccount { get; set; } = string.Empty;
         public Guid ClientToken { get; set; }
+        public string DefaultGame { get; set; } = string.Empty;
 
         public static Settings Default()
         {

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HCGStudio.TheLauncherLib.Tools
 {
@@ -12,13 +8,14 @@ namespace HCGStudio.TheLauncherLib.Tools
     {
         [SupportedOSPlatform("windows")]
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern bool CreateSymbolicLinkW(string lpSymlinkFileName, 
+        private static extern bool CreateSymbolicLinkW(string lpSymlinkFileName,
             string lpTargetFileName, int flags);
 
         [SupportedOSPlatform("linux")]
         [SupportedOSPlatform("macos")]
         [DllImport("libc")]
         private static extern int symlink(string target, string linkPath);
+
         public static bool Create(string source, string dest)
         {
             if (OperatingSystem.IsWindows())
