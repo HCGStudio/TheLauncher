@@ -51,6 +51,10 @@ namespace HCGStudio.QuickLauncher
                         await File.ReadAllTextAsync(Path.Combine(asset, "indexes", $"{game.AssetIndex}.json")));
                     var launcher = new Launcher(auth, game, assetList, asset, lib,
                         Path.Combine(games, App.Config.DefaultGame), defaultGame.CustomJava ?? App.Config.DefaultJava);
+                    launcher.ArgBuilder.Append(new JvmArgProvider(o =>
+                    {
+                        o.MaxMemoryInMegaBytes = defaultGame.Ram;
+                    }));
                     await launcher.Run();
                     Environment.Exit(0);
                 }

@@ -21,9 +21,9 @@ namespace HCGStudio.TheLauncher
         {
             return Type switch
             {
-                "Mojang" => new(AccessToken ?? string.Empty, clientToken, AccountGuid, Name),
-                "Microsoft" => new(RefreshToken ?? string.Empty),
-                "Offline" => new() {Token = AccountGuid, UserName = Name},
+                "Mojang" => new OldAuthenticator(AccessToken ?? string.Empty, clientToken, AccountGuid, Name),
+                "Microsoft" => new MicrosoftAuthenticator(RefreshToken ?? string.Empty),
+                "Offline" => new OfflineAuthenticator() {Token = AccountGuid, UserName = Name},
                 _ => throw new NotSupportedException()
             };
         }
@@ -34,6 +34,7 @@ namespace HCGStudio.TheLauncher
         public string? CustomJava { get; set; }
         public string GameVersion { get; set; } = string.Empty;
         public string[] AdditionalArgs { get; set; } = Array.Empty<string>();
+        public ulong Ram { get; set; } = 4096;
 
         public async Task<MinecraftGame> GetMinecraftGame(string versionDir, ICollection<string> features)
         {
